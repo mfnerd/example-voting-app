@@ -15,7 +15,7 @@ spec:
         app: db
     spec:
       containers:
-      - image: postgres:15-alpine
+      - image: postgres:17.5-alpine
         name: postgres
         env:
         - name: POSTGRES_USER
@@ -25,6 +25,13 @@ spec:
         ports:
         - containerPort: 5432
           name: postgres
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: db-data
